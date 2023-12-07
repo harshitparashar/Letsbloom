@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
-import db as dataBase
+
 import json 
 
 def connect(client_id):
