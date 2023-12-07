@@ -21,15 +21,10 @@ def hello_name():
 
 @app.route('/get/api/books',methods = ['GET'])
 def get():
-     # try:
-     #      client = MongoClient('mongodb://localhost:27017/') #localhost:27017
-     #      db = client['library'] 
-     #      collection = db['books'] 
-     # except Exception as e:
-     #      return e
+     
      collection = connect('mongodb://localhost:27017/')
      ls = []
-     # (1.) returning from mongodb database
+     # returning from mongodb database
      cursor = collection.find({})
      for i in cursor:
           ls.append({
@@ -39,14 +34,6 @@ def get():
                'book_id':i['book_id']
           })
      
-     # (2.) returning from auxilary python file objects/variable
-     # ls  = dataBase.books
-
-     # (3.) returning from local json file 
-     # f = open('data.json')
-     # ls = json.load(f)
-     # f.close()
-
      return jsonify(ls)
 
 @app.route('/post/api/books', methods=['POST'])
